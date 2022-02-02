@@ -1,0 +1,134 @@
+import { useState } from "react";
+import { evaluate } from "mathjs";
+// import { unit } from "mathjs/lib/cjs/entry/pureFunctionsAny.generated";
+
+const ConverterForm = ({ title, units }) => {
+	const [input, setInput] = useState("");
+
+	// use the first unit from the units props array as the default
+	const [from, setFrom] = useState(units[0].symbol);
+	const [to, setTo] = useState(units[0].symbol);
+
+	const [output, setOutput] = useState("");
+
+	// round the number to 4 decimal places
+	function roundUp(num) {
+		var m = Number((Math.abs(num) * 1000).toPrecision(14));
+		return (Math.round(m) / 1000) * Math.sign(num);
+	}
+
+	// put spaces after thousands on the answer
+	function numberWithSpaces(number) {
+		return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+	}
+
+	const convertNumber = (val = input, fromUnit = from, toUnit = to) => {
+		// let i = unit(`${input} ${from}`).toString();
+		// let j = i.to(`${to}`);
+		let theOutput = evaluate(`${val} ${fromUnit} to ${toUnit}`).toNumber(`${toUnit}`);
+
+		let formattedOutput = numberWithSpaces(roundUp(theOutput));
+
+		setOutput(formattedOutput);
+	};
+
+	return (
+		<main className=" bg-black text-white p-3">
+			<div className=" p-3 mt-2 bg-gray-800 rounded-lg">
+				<h1 className=" font-semibold text-2xl">{title}</h1>
+			</div>
+
+			<form action="" className="p-4 mt-4 bg-gray-800  rounded-lg">
+				{/* the Input */}
+				<label htmlFor="" className=" font-semibold inline-block mb-3">
+					From:
+				</label>{" "}
+				<br />
+				<div className=" flex w-full">
+					<input
+						type="number"
+						className=" w-full rounded-lg mr-2 p-2 bg-gray-500 focus:ring-4 outline-none ring-purple-500 font-bold text-2xl"
+						value={input}
+						onChange={(e) => {
+							setInput(e.target.value);
+
+							// set the initial value and leave the others empty
+							convertNumber(e.target.value);
+						}}
+					/>
+					<select
+						name="unit"
+						id=""
+						value={from}
+						onChange={(e) => {
+							setFrom(e.target.value);
+
+							// set the 'from' unit and leave the others empty
+							convertNumber(...[,], e.target.value, ...[,]);
+						}}
+						className=" rounded-lg  font-semibold bg-gray-500 focus:ring-4 outline-none ring-purple-500 p-3"
+					>
+						{units.map((unit, index) => (
+							<option key={index} value={unit.symbol}>
+								{unit.name}
+							</option>
+						))}
+					</select>
+				</div>
+				{/* out put */}
+				<label htmlFor="" className=" font-semibold inline-block mb-3 mt-8">
+					To:
+				</label>{" "}
+				<br />
+				<div className=" flex w-full">
+					<input
+						type="text"
+						className=" w-full rounded-lg mr-2 p-2 bg-gray-500 focus:ring-4 outline-none ring-purple-500 font-bold text-2xl"
+						disabled
+						value={output}
+						onChange={(e) => setOutput(e.target.value)}
+					/>
+					<select
+						name="unit"
+						id=""
+						value={to}
+						onChange={(e) => {
+							setTo(e.target.value);
+
+							// set the 'to' unit and leave the others empty
+							convertNumber(...[,], ...[,], e.target.value);
+						}}
+						className=" rounded-lg  font-semibold bg-gray-500 focus:ring-4 outline-none ring-purple-500 p-3"
+					>
+						{units.map((unit, index) => (
+							<option key={index} value={unit.symbol}>
+								{unit.name}
+							</option>
+						))}
+					</select>
+				</div>
+			</form>
+			<div className=" overflow-auto whitespace-nowrap mt-5">
+				{units.map((unit, index) => (
+					<button
+						key={index}
+						className={
+							unit.symbol == to
+								? ` bg-purple-700 py-3  px-7 text-center rounded-lg font-semibold mr-3`
+								: ` bg-gray-700 py-3  px-7 text-center rounded-lg font-semibold mr-3`
+						}
+						onClick={() => {
+							// set the 'to' unit and leave the others empty
+							setTo(unit.symbol);
+							convertNumber(...[,], ...[,], unit.symbol);
+						}}
+					>
+						{unit.name} <br />({unit.symbol})
+					</button>
+				))}
+			</div>
+		</main>
+	);
+};
+
+export default ConverterForm;
