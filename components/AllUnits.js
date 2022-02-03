@@ -18,8 +18,8 @@ const AllUnits = () => {
 			<div className=" bg-gray-800 w-2/5 h-full py-3 lg:w-72 lg:rounded-lg">
 				<h2 className=" font-bold text-2xl p-2 mb-4">Other Units</h2>
 				<ul>
-					{allUnits.sort().map((unit) => (
-						<Link href={`/conversion/${unit}`}>
+					{allUnits.sort().map((unit, index) => (
+						<Link key={index} href={`/conversion/${unit}`}>
 							<a className=" block p-2 font-semibold border-b-2 border-gray-600 hover:bg-slate-700">
 								{unit.charAt(0).toUpperCase() + unit.slice(1)}
 							</a>
