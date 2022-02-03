@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { evaluate } from "mathjs";
+import math, { evaluate, createUnit } from "mathjs";
 import AllUnits from "./AllUnits";
-// import { unit } from "mathjs/lib/cjs/entry/pureFunctionsAny.generated";
+// import { createUnit } from "mathjs/lib/cjs/entry/pureFunctionsAny.generated";
 
 const ConverterForm = ({ title, units }) => {
 	const [unitsMenu, setUnitsMenu] = useState(false);
 	const [input, setInput] = useState("");
+
+	createUnit("mmH20", "0.0000967841 atm", { override: true });
+	createUnit("cmH20", "10 mmH20", { override: true });
 
 	// use the first unit from the units props array as the default
 	const [from, setFrom] = useState(units[0].symbol);
