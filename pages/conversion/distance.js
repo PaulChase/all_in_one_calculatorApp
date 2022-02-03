@@ -1,4 +1,5 @@
 import ConverterForm from "../../components/ConverterForm";
+import Head from "next/head";
 
 const Distance = () => {
 	// the units of measurement
@@ -37,7 +38,16 @@ const Distance = () => {
 		},
 	];
 
-	return <ConverterForm title="Distance" units={units} />;
+	return (
+		<>
+			<Head>
+				<title>Distance Converter | Abacus </title>
+				<meta name="description" content="created by Ajonye Paul" />
+				<link rel="icon" href="/favicon.ico" />
+			</Head>
+			<ConverterForm title="Distance" units={units} />;
+		</>
+	);
 };
 
 export default Distance;

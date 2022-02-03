@@ -1,4 +1,5 @@
 import ConverterForm from "../../components/ConverterForm";
+import Head from "next/head";
 
 const Time = () => {
 	// the units of measurement
@@ -45,7 +46,16 @@ const Time = () => {
 		},
 	];
 
-	return <ConverterForm title="Time" units={units} />;
+	return (
+		<>
+			<Head>
+				<title> Time Converter | Abacus </title>
+				<meta name="description" content="created by Ajonye Paul" />
+				<link rel="icon" href="/favicon.ico" />
+			</Head>
+			<ConverterForm title="Time" units={units} />;
+		</>
+	);
 };
 
 export default Time;
