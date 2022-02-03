@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const AllUnits = () => {
-	const allUnits = ["distance", "time", "mass", "speed", "acceleration", "volume"];
+	const allUnits = ["distance", "time", "mass", "speed", "acceleration", "volume", "surfacearea"];
 	return (
 		<div className=" fixed bg-black/60 w-full h-full top-0 left-0 lg:static lg:bg-inherit lg:w-72 lg:mr-4  z-20 lg:z-0">
 			<div className=" bg-gray-800 w-2/5 h-full py-3 lg:w-72 lg:rounded-lg">
