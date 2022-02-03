@@ -6,7 +6,7 @@ const AllUnits = () => {
 		"time",
 		"mass",
 		"speed",
-		"acceleration",
+		"accelaration",
 		"volume",
 		"surfacearea",
 		"angles",
