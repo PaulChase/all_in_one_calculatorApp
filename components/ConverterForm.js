@@ -78,7 +78,7 @@ const ConverterForm = ({ title, units }) => {
 					<div className=" flex w-full">
 						<input
 							type="number"
-							className=" w-full rounded-lg mr-2 p-2 bg-gray-500 focus:ring-4 outline-none ring-purple-500 font-bold text-2xl"
+							className=" w-full rounded-lg mr-2 p-2 bg-gray-500 focus:ring-4 outline-none ring-purple-500 font-bold text-2xl text-right"
 							value={input}
 							onChange={(e) => {
 								setInput(e.target.value);
@@ -97,7 +97,7 @@ const ConverterForm = ({ title, units }) => {
 								// set the 'from' unit and leave the others empty
 								convertNumber(...[,], e.target.value, ...[,]);
 							}}
-							className=" rounded-lg  font-semibold bg-gray-500 focus:ring-4 outline-none ring-purple-500 p-3"
+							className=" rounded-lg  font-semibold bg-gray-500 focus:ring-4 outline-none ring-purple-500 p-3 text-sm"
 						>
 							{units.map((unit, index) => (
 								<option key={index} value={unit.symbol}>
@@ -114,7 +114,7 @@ const ConverterForm = ({ title, units }) => {
 					<div className=" flex w-full">
 						<input
 							type="text"
-							className=" w-full rounded-lg mr-2 p-2 bg-gray-500 focus:ring-4 outline-none ring-purple-500 font-bold text-2xl"
+							className=" w-full rounded-lg mr-2 p-2 bg-gray-500 focus:ring-4 outline-none ring-purple-500 font-bold text-2xl text-right "
 							disabled
 							value={output}
 							onChange={(e) => setOutput(e.target.value)}
@@ -130,7 +130,7 @@ const ConverterForm = ({ title, units }) => {
 								// set the 'to' unit and leave the others empty
 								convertNumber(...[,], ...[,], e.target.value);
 							}}
-							className=" rounded-lg  font-semibold bg-gray-500 focus:ring-4 outline-none ring-purple-500 p-3"
+							className=" rounded-lg  font-semibold bg-gray-500 focus:ring-4 outline-none ring-purple-500 p-3 text-sm"
 						>
 							{units.map((unit, index) => (
 								<option key={index} value={unit.symbol}>
@@ -143,6 +143,7 @@ const ConverterForm = ({ title, units }) => {
 
 				{/* all available units aligned horizontally */}
 				<div className=" overflow-auto whitespace-nowrap my-5 py-3">
+					<h3 className=" font-semibold mb-3 p-2">Pick any unit below:</h3>
 					{units.map((unit, index) => (
 						<button
 							key={index}

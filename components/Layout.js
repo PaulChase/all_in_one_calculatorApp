@@ -3,7 +3,7 @@ import NavBar from "./NavBar";
 
 const Layout = ({ children }) => {
 	return (
-		<div className=" bg-gray-900">
+		<div className=" bg-gray-900 ">
 			<NavBar />
 			{children}
 			<Footer />

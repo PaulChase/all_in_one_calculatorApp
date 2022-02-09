@@ -12,11 +12,11 @@ export default function Home() {
 			</Head>
 
 			<secton
-				className=" h-[32rem] w-full bg-cover bg-no-repeat flex items-center"
+				className=" h-screen w-full bg-cover bg-center bg-no-repeat flex items-center"
 				style={{ backgroundImage: "url('/bg.jpg')" }}
 			>
-				<div className=" px-12 text-white">
-					<p className=" text-6xl  max-w-xl font-bold">
+				<div className="  text-white ml-8">
+					<p className=" text-4xl lg:text-6xl  max-w-xs lg:max-w-xl font-bold">
 						Convert between units in maths, physics, chemistry...
 					</p>
 					<Link href="/conversion">
