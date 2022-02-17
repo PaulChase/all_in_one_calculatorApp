@@ -38,6 +38,7 @@ const ConverterForm = ({ title, units }) => {
 	};
 
 	useEffect(() => {
+		// show menu if in large screen
 		if (screen.width >= "1000") {
 			setUnitsMenu(true);
 		}
@@ -165,9 +166,9 @@ const ConverterForm = ({ title, units }) => {
 			</div>
 			<div className=" p-3 bg-gray-800 rounded-lg lg:max-w-[20rem] lg:text-lg">
 				<h2>Math Tips and tricks</h2>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab sequi architecto accusamus deleniti ipsa
-				ullam et, nisi veritatis eligendi possimus corporis exercitationem consequuntur omnis, debitis incidunt
-				nemo delectus dignissimos eaque.
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab sequi architecto accusamus deleniti ipsa ullam et,
+				nisi veritatis eligendi possimus corporis exercitationem consequuntur omnis, debitis incidunt nemo delectus
+				dignissimos eaque.
 			</div>
 		</main>
 	);
