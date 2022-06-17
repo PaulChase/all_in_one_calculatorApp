@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import math, { evaluate, createUnit } from "mathjs";
 import AllUnits from "./AllUnits";
 
+export function numberWithSpaces(number) {
+	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
 
 const ConverterForm = ({ title, units }) => {
 	const [unitsMenu, setUnitsMenu] = useState(false);
@@ -20,11 +23,6 @@ const ConverterForm = ({ title, units }) => {
 	function roundUp(num) {
 		var m = Number((Math.abs(num) * 1000).toPrecision(14));
 		return (Math.round(m) / 1000) * Math.sign(num);
-	}
-
-	// put spaces after thousands on the answer
-	function numberWithSpaces(number) {
-		return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 	}
 
 	const convertNumber = (val = input, fromUnit = from, toUnit = to) => {
