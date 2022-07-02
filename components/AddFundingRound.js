@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "./Button";
 import Card from "./Card";
 import InputField from "./InputField";
+import { v4 as uuid } from "uuid";
 
 export default function AddFundingRound({ submitFundingRound, closeForm }) {
 	const [data, setData] = useState({
@@ -19,6 +20,9 @@ export default function AddFundingRound({ submitFundingRound, closeForm }) {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
+
+		data.id = uuid();
+
 		submitFundingRound(data);
 		closeForm();
 	};

@@ -25,22 +25,20 @@ const ConverterForm = ({ title, units }) => {
 		return (Math.round(m) / 1000) * Math.sign(num);
 	}
 
-	const convertNumber = (val = input, fromUnit = from, toUnit = to) => {
-		// let i = unit(`${input} ${from}`).toString();
-		// let j = i.to(`${to}`);
-		let theOutput = evaluate(`${val} ${fromUnit} to ${toUnit}`).toNumber(`${toUnit}`);
-
-		let formattedOutput = numberWithSpaces(roundUp(theOutput));
-
-		setOutput(formattedOutput);
-	};
-
 	useEffect(() => {
 		// show menu if in large screen
 		if (screen.width >= "1000") {
 			setUnitsMenu(true);
 		}
 	}, []);
+
+	useEffect(() => {
+		let theOutput = evaluate(`${input} ${from} to ${to}`).toNumber(`${to}`);
+
+		let formattedOutput = numberWithSpaces(roundUp(theOutput));
+
+		setOutput(formattedOutput);
+	}, [input, from, to]);
 
 	return (
 		<main className=" bg-black text-white p-3 lg:flex lg:justify-between lg:overflow-auto h-full lg:text-2xl">
@@ -79,23 +77,13 @@ const ConverterForm = ({ title, units }) => {
 							type="number"
 							className=" w-full rounded-lg mr-2 p-2 bg-gray-500 focus:ring-4 outline-none ring-purple-500 font-bold text-2xl text-right"
 							value={input}
-							onChange={(e) => {
-								setInput(e.target.value);
-
-								// set the initial value and leave the others empty
-								convertNumber(e.target.value);
-							}}
+							onChange={(e) => setInput(e.target.value)}
 						/>
 						<select
 							name="unit"
 							id=""
 							value={from}
-							onChange={(e) => {
-								setFrom(e.target.value);
-
-								// set the 'from' unit and leave the others empty
-								convertNumber(...[,], e.target.value, ...[,]);
-							}}
+							onChange={(e) => setFrom(e.target.value)}
 							className=" rounded-lg  font-semibold bg-gray-500 focus:ring-4 outline-none ring-purple-500 p-3 text-sm"
 						>
 							{units.map((unit, index) => (
@@ -123,12 +111,7 @@ const ConverterForm = ({ title, units }) => {
 							id=""
 							value={to}
 							disabled
-							onChange={(e) => {
-								setTo(e.target.value);
-
-								// set the 'to' unit and leave the others empty
-								convertNumber(...[,], ...[,], e.target.value);
-							}}
+							onChange={(e) => setTo(e.target.value)}
 							className=" rounded-lg  font-semibold bg-gray-500 focus:ring-4 outline-none ring-purple-500 p-3 text-sm"
 						>
 							{units.map((unit, index) => (
@@ -151,11 +134,7 @@ const ConverterForm = ({ title, units }) => {
 									? ` bg-purple-700 py-3  px-7 text-center rounded-lg font-semibold mr-3 inline-block`
 									: ` bg-gray-700 py-3  px-7 text-center rounded-lg font-semibold mr-3 inline-block`
 							}
-							onClick={() => {
-								// set the 'to' unit and leave the others empty
-								setTo(unit.symbol);
-								convertNumber(...[,], ...[,], unit.symbol);
-							}}
+							onClick={() => setTo(unit.symbol)}
 						>
 							{unit.name} <br />({unit.symbol})
 						</button>

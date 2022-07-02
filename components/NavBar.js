@@ -8,14 +8,22 @@ const NavBar = () => {
 			</Link>
 
 			<ul className=" flex space-x-5 items-center">
-				<li>
+				<li className="hidden md:inline-block">
 					<Link href="/conversion">
 						<a>Conversions</a>
 					</Link>
 				</li>
+				<li className="hidden md:inline-block">
+					<Link href="/equity">
+						<a>Equity</a>
+					</Link>
+				</li>
 				<li>
 					<Link href="https://twitter.com/ajonyepaul">
-						<a className="bg-purple-500 hover:bg-purple-700  px-6 inline-block  rounded-full font-semibold p-2">
+						<a
+							className="bg-purple-500 hover:bg-purple-700  px-6 inline-block  rounded-full font-semibold p-2"
+							target="_blank"
+						>
 							Contact Me
 						</a>
 					</Link>
